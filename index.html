@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longest Subarray</title>
+</head>
+<body>
+    <script>
+        function longestSubarray(array) {
+            let maxLength = 0;
+            for (let start = 0; start < array.length; start++) {
+                for (let end = start + 1; end <= array.length; end++) {
+                    let subarray = array.slice(start, end); 
+                    let count0 = subarray.filter(num => num === 0).length;
+                    let count1 = subarray.filter(num => num === 1).length;
+                    if (count0 === count1) {
+                        maxLength = Math.max(maxLength, end - start);
+                    }
+                }
+            }
+
+            return maxLength;
+        }
+
+        const binaryArray = [0, 0, 1, 1, 1, 1];
+        console.log(longestSubarray(binaryArray)); 
+    </script>
+</body>
+</html>
